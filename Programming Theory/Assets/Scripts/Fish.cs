@@ -7,6 +7,7 @@ public class Fish : MonoBehaviour
     private bool isTagged = false;
     public float speed = 10f;
     public float speedMultiplier = 2f;
+    public float pointsValue = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,12 @@ public class Fish : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
+    {
+        Movement();
+    }
+
+    protected virtual void Movement()
     {
         //movement code calling speed and speedMultiplier
     }
