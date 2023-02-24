@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
     private bool isTagged = false;
-    public float speed = 10f;
-    public float speedMultiplier = 2f;
-    public float pointsValue = 1;
+    public float speed = 0.2f;
+    public float speedBonus = 1f;
+    private int pointsValue = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,19 @@ public class Fish : MonoBehaviour
 
     protected virtual void Movement()
     {
-        //movement code calling speed and speedMultiplier
+        if (isTagged)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * (speed + speedBonus));
+        }
+        else
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
+
+    public void Tagged()
+    {
+        isTagged = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled= false;
+        Debug.Log("Tagged for " + pointsValue);
+        ScoreManager.Instance.IncreaseScore(pointsValue);
     }
 }
