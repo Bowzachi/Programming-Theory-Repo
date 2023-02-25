@@ -1,18 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static MainManager Instance;
+
+    public event EventHandler OnGameOver;
+
+    [SerializeField] private bool isGamePlaying;
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        isGamePlaying = true;
     }
+
+    public void GameOver()
+    {
+        OnGameOver?.Invoke(this, EventArgs.Empty);
+        isGamePlaying = false;
+    }
+
+    public bool GetIsGamePlaying()
+    {
+        //Creating a method for reading private var ENCAPSULATION
+        return isGamePlaying;
+    }
+
 }

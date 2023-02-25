@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
+    public event EventHandler OnScoreUpdated;
 
     private int score;
 
@@ -31,7 +33,12 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScore()
     {
-        //something
         Debug.Log(score);
+        OnScoreUpdated?.Invoke(this, EventArgs.Empty);
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }

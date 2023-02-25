@@ -38,9 +38,16 @@ public class Fish : MonoBehaviour
 
     public void Tagged()
     {
+        AdditionalOnTagged(); //adding virtual method for override-able additional effects on projectile hit. POLYMORPHISM
         isTagged = true;
         gameObject.GetComponent<CapsuleCollider>().enabled= false;
         Debug.Log("Tagged for " + pointsValue);
         ScoreManager.Instance.IncreaseScore(pointsValue);
+    }
+
+    //adding virtual method for override-able additional effects on projectile hit. POLYMORPHISM
+    protected virtual void AdditionalOnTagged()
+    {
+        Debug.Log("Default Fish class referenced for AdditionalOnTagged!");
     }
 }
