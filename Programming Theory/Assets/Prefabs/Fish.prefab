@@ -151,7 +151,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishV3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2698599783777480253, guid: de500f6b90f89bc4c87a6585b2dea01a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: de500f6b90f89bc4c87a6585b2dea01a, type: 3}
 --- !u!4 &1174478646603731378 stripped
 Transform:

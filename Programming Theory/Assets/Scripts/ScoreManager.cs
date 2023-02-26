@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScore()
     {
-        Debug.Log(score);
+        //Debug.Log(score);
         OnScoreUpdated?.Invoke(this, EventArgs.Empty);
     }
 

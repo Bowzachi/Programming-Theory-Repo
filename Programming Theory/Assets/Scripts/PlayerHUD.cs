@@ -12,10 +12,23 @@ public class PlayerHUD : MonoBehaviour
 
     void Start()
     {
+        ScoreManager.Instance.OnScoreUpdated += ScoreManager_OnScoreUpdated;
+        MainManager.Instance.OnGameStart += MainManager_OnGameStart;
+        MainManager.Instance.OnGameOver += MainManager_OnGameOver;
+    }
+
+    private void MainManager_OnGameOver(object sender, System.EventArgs e)
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void MainManager_OnGameStart(object sender, System.EventArgs e)
+    {
+        scoreText.gameObject.SetActive(true);
+        timerText.gameObject.SetActive(true);
         timeLimit = timeLimitMax;
         scoreText.text = "SCIENCE: 0";
         timerText.text = "TIMER: " + timeLimit;
-        ScoreManager.Instance.OnScoreUpdated += Instance_OnScoreUpdated;
     }
 
     private void Update()
@@ -35,7 +48,7 @@ public class PlayerHUD : MonoBehaviour
         }
     }
 
-    private void Instance_OnScoreUpdated(object sender, System.EventArgs e)
+    private void ScoreManager_OnScoreUpdated(object sender, System.EventArgs e)
     {
         UpdateScoreText();
     }
