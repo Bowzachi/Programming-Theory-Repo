@@ -12,19 +12,24 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     [SerializeField] private GameObject playerProjectile;
     [SerializeField] private Transform fireEmitPoint;
+    [SerializeField] private float fireRateMax = 1.5f;
+    private float timeSinceLastFired;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        timeSinceLastFired = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && MainManager.Instance.GetIsGamePlaying())
+        timeSinceLastFired -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space) && MainManager.Instance.GetIsGamePlaying() && timeSinceLastFired <= 0)
         {
             FireProjectile();
+            timeSinceLastFired = fireRateMax;
         }
     }
 

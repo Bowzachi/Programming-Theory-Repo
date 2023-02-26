@@ -6,9 +6,9 @@ using UnityEngine;
 public class Fish : MonoBehaviour
 {
     private bool isTagged = false;
-    public float speed = 0.2f;
-    public float speedBonus = 1f;
-    private int pointsValue = 1;
+    [SerializeField] private float speed = 0.2f;
+    [SerializeField] private float speedBonus = 1f;
+    [SerializeField] private int pointsValue = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +26,7 @@ public class Fish : MonoBehaviour
         Movement();
     }
 
+    //Putting movement in its own overrideable method ABSTRACTION
     protected virtual void Movement()
     {
         if (isTagged)
@@ -41,13 +42,13 @@ public class Fish : MonoBehaviour
         AdditionalOnTagged(); //adding virtual method for override-able additional effects on projectile hit. POLYMORPHISM
         isTagged = true;
         gameObject.GetComponent<CapsuleCollider>().enabled= false;
-        Debug.Log("Tagged for " + pointsValue);
+        //Debug.Log("Tagged for " + pointsValue);
         ScoreManager.Instance.IncreaseScore(pointsValue);
     }
 
     //adding virtual method for override-able additional effects on projectile hit. POLYMORPHISM
     protected virtual void AdditionalOnTagged()
     {
-        Debug.Log("Default Fish class referenced for AdditionalOnTagged!");
+        //Debug.Log("Default Fish class referenced for AdditionalOnTagged!");
     }
 }

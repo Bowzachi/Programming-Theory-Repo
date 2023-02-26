@@ -25,7 +25,7 @@ public class PlayerProjectile : MonoBehaviour
         if (fish != null)
         {
             fish.Tagged();
-            Debug.Log("Think we hit a fish");
+            //Debug.Log("Think we hit a fish");
             Destroy(gameObject);
         }
     }

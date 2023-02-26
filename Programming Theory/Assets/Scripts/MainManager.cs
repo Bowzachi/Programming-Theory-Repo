@@ -8,6 +8,7 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
 
     public event EventHandler OnGameOver;
+    public event EventHandler OnGameStart;
 
     [SerializeField] private bool isGamePlaying;
     private void Awake()
@@ -17,6 +18,12 @@ public class MainManager : MonoBehaviour
 
     private void Start()
     {
+        isGamePlaying = false;
+    }
+
+    public void StartGame()
+    {
+        OnGameStart?.Invoke(this, EventArgs.Empty);
         isGamePlaying = true;
     }
 

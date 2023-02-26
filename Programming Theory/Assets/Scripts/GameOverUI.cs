@@ -10,11 +10,11 @@ public class GameOverUI : MonoBehaviour
 
     private void Start()
     {
-        MainManager.Instance.OnGameOver += Instance_OnGameOver;
+        MainManager.Instance.OnGameOver += MainManager_OnGameOver;
         gameObject.SetActive(false);
     }
 
-    private void Instance_OnGameOver(object sender, System.EventArgs e)
+    private void MainManager_OnGameOver(object sender, System.EventArgs e)
     {
         gameObject.SetActive(true);
         OnDisplay();

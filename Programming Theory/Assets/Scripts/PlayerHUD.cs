@@ -20,14 +20,18 @@ public class PlayerHUD : MonoBehaviour
 
     private void Update()
     {
-        timeLimit -= Time.deltaTime;
-        if(timeLimit <= 0)
+        if (MainManager.Instance.GetIsGamePlaying())
         {
-            MainManager.Instance.GameOver();
-        }
-        else
-        {
-            UpdateTimerText();
+
+            timeLimit -= Time.deltaTime;
+            if (timeLimit <= 0)
+            {
+                MainManager.Instance.GameOver();
+            }
+            else
+            {
+                UpdateTimerText();
+            }
         }
     }
 
